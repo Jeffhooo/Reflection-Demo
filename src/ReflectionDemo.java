@@ -34,6 +34,10 @@ public class ReflectionDemo {
             Method sayMtd = cls.getDeclaredMethod("say", (Class[])null);
             sayMtd.setAccessible(true);
             sayMtd.invoke(instance, (Object[])null);
+
+            // The console output:
+            // [private void ReflectionDemo$A.say(), private void ReflectionDemo$A.setName(java.lang.String), private void ReflectionDemo$A.setValue(java.lang.String)]
+            // Hello, My name is Jeff.
         } catch (Exception e) {
             e.printStackTrace();
         }
