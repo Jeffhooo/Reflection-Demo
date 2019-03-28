@@ -8,16 +8,23 @@ public class ReflectionDemo {
 
     public static void main(String[] args) {
         try {
+            // Load class with ClassLoader
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             Class cls = loader.loadClass("jeff.A");
+
+            // Get class methods with reflection
             Method m[] = cls.getDeclaredMethods();
             System.out.println(Arrays.toString(m));
+
+            // Create a instance with reflection
             A instance = (A) cls.newInstance();
 
+            // Set fields with reflection
             Field nameFld = cls.getDeclaredField("name");
             nameFld.setAccessible(true);
             nameFld.set(instance, "Jeff");
 
+            // Invoke a method with reflection
             Method sayMtd = cls.getDeclaredMethod("say", (Class[])null);
             sayMtd.setAccessible(true);
             sayMtd.invoke(instance, (Object[])null);
